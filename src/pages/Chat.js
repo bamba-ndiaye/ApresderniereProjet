@@ -9,7 +9,9 @@ import {
   deleteConversation,
   createStatus,
   markStatusAsViewed,
-  fetchStatuses
+  fetchStatuses,
+  createUser,
+  fetchUsers
 } from '../api/api.js';
 import {
   formatTime,
@@ -936,6 +938,8 @@ const setupEventListeners = () => {
         return;
       }
       
+      const users = await fetchUsers()
+      console.log(users);
       // Create contact
       const newContact = await createUser({
         name,
@@ -944,6 +948,7 @@ const setupEventListeners = () => {
         status: "Hey there! I am using WhatsApp",
         lastSeen: new Date().toISOString()
       });
+      
       
       // Add to contacts list
       allContacts.push(newContact);
